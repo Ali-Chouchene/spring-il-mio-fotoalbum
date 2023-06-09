@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="icon"
+    href="https://media.istockphoto.com/id/1218529413/it/vettoriale/fotocamera-pixel-art-icona-web-del-gioco-vettoriale-a-8-bit-isolata-su-sfondo-bianco.jpg?s=612x612&w=0&k=20&c=ku_v6YeC-pJvWjiDIY2NwghDfwsa_-kL6CZ_ix-hM0M=">
+  <title>Album</title>
+</head>
+
+<body>
+    <div class="container border border-secondary py-5 mt-3">
+        <form th:action="@{/superAdmin/foto/update/{id}(id = ${foto.id})}" method="post"
+            sec:authorize="hasAuthority('SUPERADMIN')">
+            <div class="row">
+                <div class="col-3">
+                    <h4>titolo:</h4>
+                    <input type="text" name="titolo" th:value="${foto.titolo}">
+                    <p th:if="${errori != null && errori.hasFieldErrors('titolo')}"
+                        th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
+                </div>
+                <div class="col-6">
+                    <h4>descrizione:</h4>
+                    <textarea rows="5" cols="50" name="descrizione" th:text="${foto.descrizione}"></textarea>
+                    <p th:if="${errori != null && errori.hasFieldErrors('descrizione')}"
+                        th:text="${errori.getFieldError('descrizione').defaultMessage}"></p>
+                </div>
+                <div class="col-4">
+                    <h4>Publica:</h4>
+                    <div class="d-flex align-items-center ">
+                      <div class="d-flex align-items-center">
+                    <h6>SI</h6>
+                    <input class="mb-2 ms-2" type="radio" name="visibile" value="1" th:checked="${foto.visibile} == true">
+                    </div>
+                    <div class="d-flex align-items-center ms-3">
+                    <h6>NO</h6>
+                    <input class="mb-2 ms-2"  type="radio" name="visibile" value="0" th:checked="${foto.visibile} == false">
+                    </div>
+                    </div>
+                    <p th:if="${errori != null && errori.hasFieldErrors('visibile')}"
+                        th:text="${errori.getFieldError('visibile').defaultMessage}"></p>
+                </div>
+                <div class="col-12">
+                    <h4>url:</h4>
+                    <textarea rows="1" cols="100" name="url" th:text="${foto.url}"></textarea>
+                    <p th:if="${errori != null && errori.hasFieldErrors('url')}"
+                        th:text="${errori.getFieldError('url').defaultMessage}"></p>
+                </div>
+            </div>
+            <div th:each="categoria : ${categorie}">
+                <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
+                    name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">
+                <label th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
+            </div>
+
+            <label for="user">inserisci un utente:</label>
+
+            <select name="user" id="user">
+                <option th:each="user : ${user}" th:value="${user.id}"
+                    th:selected="${foto.getUser() != null and foto.getUser().getId() == user.id ? 'true' : 'false'}">
+                    [[${user.username}]]</option>
+            </select>
+
+
+           <div class="d-flex gap-3 align-items-center">
+    <button class="btn btn-warning" type="submit">Modifica</button>
+    <a class="btn btn-success my-2" th:href="@{/superAdmin/foto/{id}(id=${foto.id})}"
+        sec:authorize="hasAuthority('SUPERADMIN')">Annulla <i class="fa-solid fa-arrow-left"
+            style="color: #ffffff;"></i></a>
+
+    <a class="btn btn-success my-2" th:href="@{/admin/foto/{id}(id=${foto.id})}"
+        sec:authorize="hasAuthority('ADMIN')">Annulla <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+</div>
+        </form>
+
+        <form th:action="@{/admin/foto/update/{id}(id = ${foto.id})}" method="post"
+            sec:authorize="hasAuthority('ADMIN')">
+            <div class="row">
+                <div class="col-3">
+                    <h4>titolo:</h4>
+                    <input type="text" name="titolo" th:value="${foto.titolo}">
+                    <p th:if="${errori != null && errori.hasFieldErrors('titolo')}"
+                        th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
+                </div>
+                <div class="col-5">
+                    <h4>descrizione:</h4>
+                    <textarea rows="1" cols="50" name="descrizione" th:text="${foto.descrizione}"></textarea>
+                    <p th:if="${errori != null && errori.hasFieldErrors('descrizione')}"
+                        th:text="${errori.getFieldError('descrizione').defaultMessage}"></p>
+                </div>
+                 <div class="col-4">
+                    <h4>Publica:</h4>
+                    <div class="d-flex align-items-center ">
+                      <div class="d-flex align-items-center">
+                    <h6>SI</h6>
+                    <input class="mb-2 ms-2" type="radio" name="visibile" value="1" th:checked="${foto.visibile} == true">
+                    </div>
+                    <div class="d-flex align-items-center ms-3">
+                    <h6>NO</h6>
+                    <input class="mb-2 ms-2"  type="radio" name="visibile" value="0" th:checked="${foto.visibile} == false">
+                    </div>
+                    </div>
+                    <p th:if="${errori != null && errori.hasFieldErrors('visibile')}"
+                        th:text="${errori.getFieldError('visibile').defaultMessage}"></p>
+                </div>
+                <div class="col-12">
+                    <h4>url:</h4>
+                    <textarea rows="1" cols="100" name="url" th:text="${foto.url}"></textarea>
+                    <p th:if="${errori != null && errori.hasFieldErrors('url')}"
+                        th:text="${errori.getFieldError('url').defaultMessage}"></p>
+                </div>
+            </div>
+
+            <div th:each="categoria : ${categorie}">
+                <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
+                    name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">
+                <label th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
+            </div>
+
+           <div class="d-flex gap-3 align-items-center">
+    <button class="btn btn-warning" type="submit">Modifica</button>
+    <a class="btn btn-success my-2" th:href="@{/superAdmin/foto/{id}(id=${foto.id})}"
+        sec:authorize="hasAuthority('SUPERADMIN')">Annulla <i class="fa-solid fa-arrow-left"
+            style="color: #ffffff;"></i></a>
+
+    <a class="btn btn-success my-2" th:href="@{/admin/foto/{id}(id=${foto.id})}"
+        sec:authorize="hasAuthority('ADMIN')">Annulla <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+</div>
+        </form>
+    </div>
+
+</body>
+
+</html>

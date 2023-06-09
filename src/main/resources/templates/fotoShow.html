@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="icon"
+    href="https://media.istockphoto.com/id/1218529413/it/vettoriale/fotocamera-pixel-art-icona-web-del-gioco-vettoriale-a-8-bit-isolata-su-sfondo-bianco.jpg?s=612x612&w=0&k=20&c=ku_v6YeC-pJvWjiDIY2NwghDfwsa_-kL6CZ_ix-hM0M=">
+  <title>Album</title>
+</head>
+
+<body>
+    <div class="container my-3">
+   
+     <div class="d-flex justify-content-between align-items-center">
+    <h1></h1>
+    <h1 class="py-3" th:text="'Dettaglio foto: ' + ${foto.descrizione}"></h1>
+    <a class="btn btn-danger ms-3" href="/logout" sec:authorize="isAuthenticated()">LOGOUT</a>
+</div>
+        <div class="row">
+            <div class="col-2 h-50 border border-secondary">
+                <h2>Informazioni: </h2>
+                <h3 th:text="'ID: ' + ${foto.id}"></h3>
+                <h3 th:text="${foto.visibile} ? 'Stato: PUBLICA' : 'Stato: PRIVATA'"></h3>
+               
+               
+                <a class="btn btn-success my-2" th:href="@{/superAdmin/foto}" sec:authorize="hasAuthority('SUPERADMIN')">Torna indietro <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+        
+    <a class="btn btn-success my-2" th:href="@{/admin/foto}" sec:authorize="hasAuthority('ADMIN')">Torna indietro <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
+
+ 
+            </div>
+            <div class="col-10">
+                <img class="w-100" th:src="${foto.url}" />
+            </div>
+        </div>
+        <div>
+            <p th:each="categoria : ${categorie}" th:text="${categoria.titolo}"></p>
+        </div>
+
+    </div>
+</body>
+
+</html>

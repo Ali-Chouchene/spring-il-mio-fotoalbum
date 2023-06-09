@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="icon"
+    href="https://media.istockphoto.com/id/1218529413/it/vettoriale/fotocamera-pixel-art-icona-web-del-gioco-vettoriale-a-8-bit-isolata-su-sfondo-bianco.jpg?s=612x612&w=0&k=20&c=ku_v6YeC-pJvWjiDIY2NwghDfwsa_-kL6CZ_ix-hM0M=">
+  <title>Album</title>
+</head>
+<body>
+	<form th:action="@{/superAdmin/categorie/update/{id}(id = ${categorie.id})}" method="post">
+
+		<label>titolo:</label>
+		<input type="text" name="titolo" th:value="${categorie.titolo}">
+		<p th:if="${errori != null && errori.hasFieldErrors('titolo')}" th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
+		<button type="submit">Modifica</button>
+	</form>
+</body>
+</html>
