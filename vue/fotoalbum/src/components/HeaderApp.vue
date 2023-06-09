@@ -15,11 +15,7 @@
                 </a>
             </div>
             <div>
-
                 <h1>Photographer</h1>
-
-
-
             </div>
 
             <div>
