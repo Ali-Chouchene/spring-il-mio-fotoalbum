@@ -26,9 +26,6 @@ export default {
 
                     // console.log(response.data);
                     this.foto = response.data;
-
-
-
                 })
         }
     },
@@ -47,8 +44,6 @@ export default {
                 <FotoComp v-for="foto in foto" :titolo="foto.titolo" :id="foto.id" :descrizione="foto.descrizione"
                     :url="foto.url" :categorie="foto.categorie" />
             </div>
-
-
         </div>
     </main>
 </template>

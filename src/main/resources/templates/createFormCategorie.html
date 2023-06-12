@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon"
+        href="https://media.istockphoto.com/id/1218529413/it/vettoriale/fotocamera-pixel-art-icona-web-del-gioco-vettoriale-a-8-bit-isolata-su-sfondo-bianco.jpg?s=612x612&w=0&k=20&c=ku_v6YeC-pJvWjiDIY2NwghDfwsa_-kL6CZ_ix-hM0M=">
+    <title>Album</title>
 </head>
-<body>
-	<form th:action="@{/superAdmin/categorie/create}" method="post">
 
-		<label>titolo:</label>
-		<input type="text" name="titolo" th:value="${categorie.titolo}">
-		<p th:if="${errori != null && errori.hasFieldErrors('titolo')}" th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
-		<button type="submit">crea</button>
-	</form>
+<body>
+    <div class="container p-5">
+        <div class="p-5 d-flex align-items-center justify-content-center">
+ 
+            <form th:action="@{/superAdmin/categorie/create}" method="post">
+             <a class="btn btn-danger ms-2" style="color: #ffffff;" th:href="@{/superAdmin/categorie}"
+        sec:authorize="hasAuthority('SUPERADMIN')">Annulla
+        <i class="fa-solid fa-x fa-beat" style="color: #ffffff;"></i></a>
+            <h2>Creazione nuova categoria</h2>
+                <h4>titolo:</h4>
+                <input class="rounded-start" placeholder="nome categoria" type="text" name="titolo" th:value="${categorie.titolo}">
+                <p th:if="${errori != null && errori.hasFieldErrors('titolo')}"
+                    th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
+                <button class="rounded-end" style="background-color: rgb(127, 127, 255);color: aliceblue;font-weight: 600;"
+                type="submit">Crea</button>
+            </form>
+        </div>
+
+    </div>
+
 </body>
+
 </html>

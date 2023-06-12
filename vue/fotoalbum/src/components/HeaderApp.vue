@@ -26,11 +26,6 @@
         </div>
 
     </header>
-    <!-- <div class="d-flex justify-content-center my-3">
-        <router-link to="foto" class="btn btn-success">
-            <h4>Vedi tutte le foto</h4>
-        </router-link>
-    </div> -->
 </template>
 
 <style></style>

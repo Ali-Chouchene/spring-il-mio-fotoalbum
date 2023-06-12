@@ -52,6 +52,7 @@
                         th:text="${errori.getFieldError('url').defaultMessage}"></p>
                 </div>
             </div>
+             <h4>Categirie:</h4>
             <div th:each="categoria : ${categorie}">
                 <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
                     name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">
@@ -115,7 +116,7 @@
                         th:text="${errori.getFieldError('url').defaultMessage}"></p>
                 </div>
             </div>
-
+ <h4>Categirie:</h4>
             <div th:each="categoria : ${categorie}">
                 <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
                     name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">

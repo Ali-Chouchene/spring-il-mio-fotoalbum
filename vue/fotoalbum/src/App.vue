@@ -1,11 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderApp from './components/HeaderApp.vue'
+import AppJumbo from './components/AppJumbo.vue'
 </script>
 
 <template>
-  <HeaderApp/>
-
+  <HeaderApp />
+  <AppJumbo />
   <RouterView />
 </template>
 

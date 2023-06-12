@@ -1,12 +1,9 @@
 <script>
 import axios from 'axios';
 
-import AppLoader from '../components/AppLoader.vue'
-
-
 export default {
     components: {
-        AppLoader
+
     },
     data() {
         return {
