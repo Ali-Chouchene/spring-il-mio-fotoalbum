@@ -14,18 +14,18 @@
 </head>
 
 <body>
-    <div class="container border border-secondary py-5 mt-3">
+    <div class="container border border-secondary py-5 mt-5">
         <form th:action="@{/superAdmin/foto/update/{id}(id = ${foto.id})}" method="post"
             sec:authorize="hasAuthority('SUPERADMIN')">
             <div class="row">
                 <div class="col-3">
-                    <h4>titolo:</h4>
+                    <h4>Titolo:</h4>
                     <input type="text" name="titolo" th:value="${foto.titolo}">
                     <p th:if="${errori != null && errori.hasFieldErrors('titolo')}"
                         th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
                 </div>
                 <div class="col-6">
-                    <h4>descrizione:</h4>
+                    <h4>Descrizione:</h4>
                     <textarea rows="5" cols="50" name="descrizione" th:text="${foto.descrizione}"></textarea>
                     <p th:if="${errori != null && errori.hasFieldErrors('descrizione')}"
                         th:text="${errori.getFieldError('descrizione').defaultMessage}"></p>
@@ -46,20 +46,24 @@
                         th:text="${errori.getFieldError('visibile').defaultMessage}"></p>
                 </div>
                 <div class="col-12">
-                    <h4>url:</h4>
+                    <h4>Url:</h4>
                     <textarea rows="1" cols="100" name="url" th:text="${foto.url}"></textarea>
                     <p th:if="${errori != null && errori.hasFieldErrors('url')}"
                         th:text="${errori.getFieldError('url').defaultMessage}"></p>
                 </div>
             </div>
-             <h4>Categirie:</h4>
-            <div th:each="categoria : ${categorie}">
+             <h4>Categorie:</h4>
+             <div  class="d-flex justify-content-around w-75">
+              <div th:each="categoria : ${categorie}">
                 <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
                     name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">
-                <label th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
+                <label class="h6" th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
             </div>
+             
+             </div>
+           
 
-            <label for="user">inserisci un utente:</label>
+            <h4>Inserisci un utente:</h4>
 
             <select name="user" id="user">
                 <option th:each="user : ${user}" th:value="${user.id}"
@@ -83,13 +87,13 @@
             sec:authorize="hasAuthority('ADMIN')">
             <div class="row">
                 <div class="col-3">
-                    <h4>titolo:</h4>
+                    <h4>Titolo:</h4>
                     <input type="text" name="titolo" th:value="${foto.titolo}">
                     <p th:if="${errori != null && errori.hasFieldErrors('titolo')}"
                         th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
                 </div>
                 <div class="col-5">
-                    <h4>descrizione:</h4>
+                    <h4>Descrizione:</h4>
                     <textarea rows="1" cols="50" name="descrizione" th:text="${foto.descrizione}"></textarea>
                     <p th:if="${errori != null && errori.hasFieldErrors('descrizione')}"
                         th:text="${errori.getFieldError('descrizione').defaultMessage}"></p>
@@ -110,19 +114,20 @@
                         th:text="${errori.getFieldError('visibile').defaultMessage}"></p>
                 </div>
                 <div class="col-12">
-                    <h4>url:</h4>
+                    <h4>Url:</h4>
                     <textarea rows="1" cols="100" name="url" th:text="${foto.url}"></textarea>
                     <p th:if="${errori != null && errori.hasFieldErrors('url')}"
                         th:text="${errori.getFieldError('url').defaultMessage}"></p>
                 </div>
             </div>
- <h4>Categirie:</h4>
+ <h4>Categorie:</h4>
+ <div  class="d-flex justify-content-around w-75">
             <div th:each="categoria : ${categorie}">
                 <input th:id="${'categoria-' + categoria.id}" th:value="${categoria.id}" type="checkbox"
                     name="categorie" th:checked="${foto.categorie != null and foto.categorie.contains(categoria)}">
-                <label th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
+                <label class="h6" th:for="${'categoria-' + categoria.id}">[[ ${categoria.titolo} ]]</label>
             </div>
-
+</div>
            <div class="d-flex gap-3 align-items-center">
     <button class="btn btn-warning" type="submit">Modifica</button>
     <a class="btn btn-success my-2" th:href="@{/superAdmin/foto/{id}(id=${foto.id})}"

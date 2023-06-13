@@ -16,28 +16,23 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Categorie {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	
+
 	@ManyToMany(mappedBy = "categorie")
 	@JsonBackReference
 	private List<Foto> foto;
-	
+
 	@NotBlank(message = "il titolo non può essere vuoto")
 	@Size(min = 3, message = "almeno 3 caratteri")
 	private String titolo;
 
-	
-	public Categorie() { }
-	
-	public Categorie(
-			String titolo) {
-	
-		
-	
+	public Categorie() {
+	}
+
+	public Categorie(String titolo) {
+
 		this.titolo = titolo;
 	}
 
@@ -69,22 +64,21 @@ public class Categorie {
 	public String toString() {
 		return "Categorie [id=" + id + ", titolo=" + titolo + "]";
 	}
-	
-	
-	 @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
-	        
-	        Categorie other = (Categorie) o;
-	        return Objects.equals(id, other.id);
-	    }
-	    
-	    @Override
-	    public int hashCode() {
-	        return Objects.hash(id);
-	    }
-	
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		Categorie other = (Categorie) o;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
 }

@@ -51,6 +51,9 @@ export default {
 
 <template>
     <div class="container mt-5">
+        <div class="mb-5">
+            <h4>Contattaci pure inserendo la tua email e il messagio che vuoi.</h4>
+        </div>
         <div v-if="this.loading" class="text-center my-5">
             <AppLoader />
         </div>

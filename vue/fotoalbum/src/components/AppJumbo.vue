@@ -6,7 +6,8 @@ export default {
         return {
             apiURL: 'http://127.0.0.1:8080/api/v1/foto/filtro',
             foto: [],
-            titolo: ''
+            titolo: '',
+
         }
     },
     methods: {
@@ -30,7 +31,7 @@ export default {
 </script>
 
 <template>
-    <div class="container mt-4">
+    <div v-if="$route.name != 'messaggio'" class="container mt-4">
         <div class="jumbo">
             <div id="carousel-foto" class="carousel slide carousel-fade">
                 <div class="carousel-inner">
